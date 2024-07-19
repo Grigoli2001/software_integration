@@ -1,4 +1,4 @@
-import { createLogger, transports, format } from "winston";
+import { createLogger, transports, format, LoggerOptions } from "winston";
 
 interface Options {
   file: {
@@ -7,12 +7,12 @@ interface Options {
     handleException: boolean;
     maxSize: number;
     maxFiles: number;
-    format: any; // You can define a more specific type for format if needed
+    format: LoggerOptions["format"];
   };
   console: {
     level: string;
     handleException: boolean;
-    format: any; // You can define a more specific type for format if needed
+    format: LoggerOptions["format"];
   };
 }
 
@@ -40,8 +40,12 @@ const logger = createLogger({
   exitOnError: false,
 });
 
-(logger as any).stream = {
-  write: function (message: string) {
+interface LoggerInterface {
+  stream: object;
+}
+
+(logger as LoggerInterface).stream = {
+  write: function (message: string): void {
     logger.info(message);
   },
 };

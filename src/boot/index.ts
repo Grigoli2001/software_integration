@@ -43,7 +43,7 @@ app.use(
 );
 
 // connect to database with await
-(async () => {
+(async (): Promise<void> => {
   await connectToDB();
 })();
 

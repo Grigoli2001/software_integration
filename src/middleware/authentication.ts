@@ -38,7 +38,7 @@ const verifyToken = (
     ) as DecodedToken;
     req.user = decoded.user;
 
-    console.log("TOKEN USER: ", req.user);
+    logger.info("TOKEN USER: ", req.user);
     next();
   } catch (error) {
     logger.error(error);

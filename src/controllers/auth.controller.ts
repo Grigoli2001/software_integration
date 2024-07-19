@@ -1,15 +1,21 @@
 import { Request, Response } from "express";
 import userModel, { IUser } from "../models/userModel";
+import logger from "../middleware/winston";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-// import "../types/express-session";
-// Define the shape of the request body for signup and signin
 interface AuthRequestBody {
   username?: string;
   email: string;
   password: string;
 }
 
+interface SessionUser {
+  _id: string;
+}
+
+interface Session {
+  user?: SessionUser;
+}
 const signup = async (req: Request, res: Response): Promise<Response> => {
   const { username, email, password }: AuthRequestBody = req.body;
 
@@ -21,7 +27,7 @@ const signup = async (req: Request, res: Response): Promise<Response> => {
 
   try {
     const User = new userModel({
-      email, // equivalent of writing email: email
+      email,
       username,
       password: hash,
     });
@@ -50,7 +56,7 @@ const signin = async (req: Request, res: Response): Promise<Response> => {
       return res.status(400).json({ message: "Email or password don't match" });
     }
 
-    (req.session as any).user = {
+    (req.session as Session).user = {
       _id: user._id.toString(),
     };
     const token = jwt.sign(
@@ -68,13 +74,12 @@ const signin = async (req: Request, res: Response): Promise<Response> => {
 };
 
 const getUser = async (req: Request, res: Response): Promise<Response> => {
-  const session = req.session as any;
+  const session = req.session as Session;
   if (!session.user) {
     return res.status(500).json({ error: "You are not authenticated" });
   }
 
   try {
-    console.log(session.user._id);
     const user: IUser | null = await userModel
       .findById(session.user._id, {
         password: 0,
@@ -87,14 +92,14 @@ const getUser = async (req: Request, res: Response): Promise<Response> => {
 
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(500).json({ error: "Failed to get user" });
   }
 };
 
 const logout = (req: Request, res: Response): Response => {
-  if ((req.session as any).user) {
-    delete (req.session as any).user;
+  if ((req.session as Session).user) {
+    delete (req.session as Session).user;
   }
 
   return res.status(200).json({ message: "Disconnected" });
