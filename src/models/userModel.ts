@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 // Define an interface for the user document
 export interface IUser extends Document {
@@ -30,19 +30,19 @@ const userSchema = new Schema<IUser>(
     messages: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Message", // Assuming you have a 'Message' model
+        ref: 'Message', // Assuming you have a 'Message' model
       },
     ],
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at",
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
     },
-  }
+  },
 );
 
 // Export the model
-const UserModel = mongoose.model<IUser>("User", userSchema);
+const UserModel = mongoose.model<IUser>('User', userSchema);
 
 export default UserModel;

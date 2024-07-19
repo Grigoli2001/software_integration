@@ -1,5 +1,5 @@
-import { Pool, PoolConfig } from "pg";
-import logger from "../../middleware/winston";
+import { Pool, PoolConfig } from 'pg';
+import logger from '../../middleware/winston';
 
 const db_config: PoolConfig = {
   user: process.env.DB_USER,
@@ -15,9 +15,9 @@ const pool = new Pool(db_config);
 export const connectToDB = async (): Promise<void> => {
   try {
     await pool.connect();
-    logger.info("Connected to database");
+    logger.info('Connected to database');
   } catch (error) {
-    logger.error("Error connecting to database", error);
+    logger.error('Error connecting to database', error);
   }
 };
 

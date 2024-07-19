@@ -1,10 +1,10 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response } from 'express';
 
 const router = Router();
 
-router.get("/api/health", (_req: Request, res: Response): void => {
+router.get('/api/health', (_req: Request, res: Response): void => {
   res.status(200).json({
-    message: "All up and running !!",
+    message: 'All up and running !!',
   });
 });
 

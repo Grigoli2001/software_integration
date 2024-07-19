@@ -1,4 +1,4 @@
-import { createLogger, transports, format, LoggerOptions } from "winston";
+import { createLogger, transports, format, LoggerOptions } from 'winston';
 
 interface Options {
   file: {
@@ -7,18 +7,18 @@ interface Options {
     handleException: boolean;
     maxSize: number;
     maxFiles: number;
-    format: LoggerOptions["format"];
+    format: LoggerOptions['format'];
   };
   console: {
     level: string;
     handleException: boolean;
-    format: LoggerOptions["format"];
+    format: LoggerOptions['format'];
   };
 }
 
 const options: Options = {
   file: {
-    level: "info",
+    level: 'info',
     filename: `./logs/app.log`,
     handleException: true,
     maxSize: 5242880, // about 5MB
@@ -26,7 +26,7 @@ const options: Options = {
     format: format.combine(format.timestamp(), format.json()),
   },
   console: {
-    level: "debug",
+    level: 'debug',
     handleException: true,
     format: format.combine(format.colorize(), format.simple()),
   },
