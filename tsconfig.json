@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "incremental": false,
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "typeRoots": ["node_modules/@types", "src/types/express-session.d.ts"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
