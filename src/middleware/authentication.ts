@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { unauthorized } from '../constants/statusCodes';
 import logger from './winston';
 
-interface DecodedToken {
+export interface DecodedToken {
   user: {
     id: string;
     email: string;
