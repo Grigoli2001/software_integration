@@ -13,6 +13,7 @@ import { connectToDB } from './database/db_connect';
 
 // routes
 import authRoutes from '../routes/auth.routes';
+import messageRoutes from '../routes/messages.routes';
 
 const app = express();
 
@@ -49,9 +50,10 @@ app.use(
 
 app.use(healthCheck);
 app.use('/auth', authRoutes);
-app.use(notFoundMiddleware);
 app.use(validator);
 app.use(verifyToken);
+app.use('/messages', messageRoutes);
+app.use(notFoundMiddleware);
 
 // app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 //   logger.error(err);

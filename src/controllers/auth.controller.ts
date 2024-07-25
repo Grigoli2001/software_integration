@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import userModel, { IUser } from '../models/userModel';
-import logger from '../middleware/winston';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 interface AuthRequestBody {
@@ -75,9 +74,10 @@ const signin = async (req: Request, res: Response): Promise<Response> => {
 
 const getUser = async (req: Request, res: Response): Promise<Response> => {
   const session = req.session as Session;
-  if (!session.user) {
-    return res.status(500).json({ error: 'You are not authenticated' });
+  if (!session.user?._id) {
+    return res.status(401).json({ error: 'You are not authenticated' });
   }
+  console.log('sesssssss ' + session.user._id);
 
   try {
     const user: IUser | null = await userModel
@@ -91,8 +91,8 @@ const getUser = async (req: Request, res: Response): Promise<Response> => {
     }
 
     return res.status(200).json(user);
-  } catch (error) {
-    logger.error(error);
+  } catch (e) {
+    console.error('Error fetching user:', e.message);
     return res.status(500).json({ error: 'Failed to get user' });
   }
 };
