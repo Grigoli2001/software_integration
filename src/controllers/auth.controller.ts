@@ -77,7 +77,6 @@ const getUser = async (req: Request, res: Response): Promise<Response> => {
   if (!session.user?._id) {
     return res.status(401).json({ error: 'You are not authenticated' });
   }
-  console.log('sesssssss ' + session.user._id);
 
   try {
     const user: IUser | null = await userModel
@@ -92,7 +91,6 @@ const getUser = async (req: Request, res: Response): Promise<Response> => {
 
     return res.status(200).json(user);
   } catch (e) {
-    console.error('Error fetching user:', e.message);
     return res.status(500).json({ error: 'Failed to get user' });
   }
 };
