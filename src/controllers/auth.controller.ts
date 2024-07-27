@@ -12,7 +12,7 @@ interface SessionUser {
   _id: string;
 }
 
-interface Session {
+export interface Session {
   user?: SessionUser;
 }
 const signup = async (req: Request, res: Response): Promise<Response> => {

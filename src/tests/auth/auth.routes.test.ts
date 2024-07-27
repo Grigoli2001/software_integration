@@ -1,6 +1,8 @@
 import request from 'supertest';
-import app from '../../boot/index';
+import { registerCoreMiddleWare } from '../../boot/index';
 import UserModel from '../../models/userModel';
+
+const app = registerCoreMiddleWare();
 
 const testUserLogin = {
   email: 'test123@gmail.com',
@@ -154,5 +156,17 @@ describe('Auth Routes', () => {
     //     username: testUserSignup.username,
     //   });
     // });
+  });
+  describe('POST /logout', () => {
+    it('should return 200 and destroy session', async () => {
+      await request(app).post('/auth/signup').send(testUserSignup);
+      const loginRes = await request(app)
+        .post('/auth/login')
+        .send(testUserLogin);
+      const cookies = loginRes.headers['set-cookie'];
+      const res = await request(app).get('/auth/logout').set('Cookie', cookies);
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual({ message: 'Disconnected' });
+    });
   });
 });

@@ -6,12 +6,12 @@ export const unauthorized: number = 401;
 export const badRequest: number = 400;
 export const userAlreadyExists: number = 409;
 
-// export default {
-//   queryError,
-//   notFound,
-//   badGateway,
-//   success,
-//   unauthorized,
-//   badRequest,
-//   userAlreadyExists,
-// };
+export default {
+  queryError,
+  notFound,
+  badGateway,
+  success,
+  unauthorized,
+  badRequest,
+  userAlreadyExists,
+};
