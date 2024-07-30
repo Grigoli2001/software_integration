@@ -145,16 +145,6 @@ describe('Auth Routes', () => {
     //   // Fetch the user
     //   const res = await request(app).get('/auth/me').set('Cookie', cookies);
     //   expect(res.status).toBe(200);
-    //   expect(res.body).toEqual({
-    //     __v: expect.any(Number),
-    //     _id: expect.any(String),
-    //     created_at: expect.any(String),
-    //     email: testUserSignup.email,
-    //     messages: [],
-    //     password: expect.any(String),
-    //     updated_at: expect.any(String),
-    //     username: testUserSignup.username,
-    //   });
     // });
   });
   describe('POST /logout', () => {

@@ -9,6 +9,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "jest --config jest.config.ts",
+    "test:auth": " jest --config jest.config.ts --testPathPattern=auth.route ",
+    "test:model": " jest --config jest.config.ts --testPathPattern=model ",
     "test:watch": "jest --watch --config jest.config.ts",
     "test:coverage": "jest --coverage --config jest.config.ts"
   },
@@ -36,6 +38,7 @@
     "eslint": "^9.7.0",
     "globals": "^15.8.0",
     "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.0.0",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
     "ts-jest": "^29.2.3",
