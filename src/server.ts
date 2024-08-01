@@ -6,5 +6,5 @@ import logger from './middleware/winston';
 try {
   startApp();
 } catch (error) {
-  logger.error('Error starting app', error);
+  logger.error('Error starting application', error);
 }
