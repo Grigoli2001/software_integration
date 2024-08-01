@@ -51,6 +51,7 @@ jobs:
         run: |
           touch .env
           echo "${{ secrets.PROD }}" >> .env  # Corrected to use the correct syntax for accessing secrets
+      - name: create .env.test file
         run: |
           touch .env.test
           echo "${{ secrets.TEST_URLS }}" >> .env.test  # Corrected to use the correct syntax for accessing secrets
