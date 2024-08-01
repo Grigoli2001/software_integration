@@ -8,8 +8,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "jest --config jest.config.ts",
+    "test": "jest --config jest.config.ts --runInBand",
     "test:auth": " jest --config jest.config.ts --testPathPattern=auth.route ",
+    "test:controller": " jest --config jest.config.ts --testPathPattern=controller ",
     "test:model": " jest --config jest.config.ts --testPathPattern=model ",
     "test:watch": "jest --watch --config jest.config.ts",
     "test:coverage": "jest --coverage --config jest.config.ts"
